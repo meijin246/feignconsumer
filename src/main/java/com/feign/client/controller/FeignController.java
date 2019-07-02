@@ -18,6 +18,16 @@ public class FeignController {
     public String helloConsumer(@RequestParam(value = "data") String data){
         Body body = new Body();
         body.setData(data);
-        return service.hello(body);
+        return "feign client "+service.hello(body);
     }
+
+    @RequestMapping(value = "/feign/hello", method = RequestMethod.GET)
+    public String helloConsumerZuul(@RequestParam(value = "data") String data){
+        Body body = new Body();
+        body.setData(data);
+        return "feign: "+service.hello(body);
+    }
+
+
+
 }
